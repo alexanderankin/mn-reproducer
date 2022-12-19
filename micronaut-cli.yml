@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: gallery.sharer
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [annotation-api, app-name, data, data-jdbc, graalvm, gradle, h2, hamcrest, http-client, jackson-databind, java, java-application, jdbc-hikari, junit, liquibase, logback, lombok, micronaut-build, netty-server, reactor, reactor-http-client, readme, security, security-annotations, security-session, shade, testcontainers, yaml]
