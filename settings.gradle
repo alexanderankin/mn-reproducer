@@ -1,3 +1,4 @@
 
 rootProject.name="gallery-sharer"
 
+include 'gallery-sharer'

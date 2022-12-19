@@ -1,3 +1,3 @@
-# Galley sharer
+# Gallery sharer
 
 application to share images easily
