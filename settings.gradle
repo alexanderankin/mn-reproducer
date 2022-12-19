@@ -2,3 +2,5 @@
 rootProject.name="gallery-sharer"
 
 include 'gallery-sharer'
+include 'micronaut-form-login'
+include 'micronaut-form-login-test'

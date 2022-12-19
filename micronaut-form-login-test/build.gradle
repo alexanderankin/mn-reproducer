@@ -1,0 +1,54 @@
+/*
+org.gradle.api.internal.tasks.DefaultTaskContainer$TaskCreationException: Could not create task ':micronaut-form-login-test:collectReachabilityMetadata'.
+	at org.gradle.api.internal.tasks.DefaultTaskContainer.taskCreationException(DefaultTaskContainer.java:715)
+    at ...
+Caused by: java.lang.IllegalArgumentException: Cannot set the value of task ':micronaut-form-login-test:collectReachabilityMetadata' property 'metadataService' of type org.graalvm.buildtools.gradle.internal.GraalVMReachabilityMetadataService using a provider of type org.graalvm.buildtools.gradle.internal.GraalVMReachabilityMetadataService.
+	at org.gradle.api.internal.provider.AbstractMinimalProvider.asSupplier(AbstractMinimalProvider.java:153)
+    at ...
+
+    https://github.com/graalvm/native-build-tools/issues/70
+    https://github.com/gradle/gradle/issues/17559
+ */
+plugins {
+    id 'java'
+    id 'io.micronaut.application' version '3.6.6'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+version '0.0.1'
+group 'io.micronaut.security'
+
+repositories.mavenCentral()
+
+micronaut.version('3.7.4')
+
+dependencies {
+    annotationProcessor('org.projectlombok:lombok')
+    annotationProcessor('io.micronaut:micronaut-http-validation')
+
+    implementation('io.micronaut.security:micronaut-security')
+    implementation('io.micronaut.security:micronaut-security-session')
+    implementation('jakarta.annotation:jakarta.annotation-api')
+    implementation('io.micronaut:micronaut-validation')
+    implementation('io.micronaut:micronaut-jackson-databind')
+
+    compileOnly('org.projectlombok:lombok')
+    runtimeOnly('ch.qos.logback:logback-classic')
+
+    implementation(project(':micronaut-form-login'))
+}
+
+application {
+    mainClass.set('io.micronaut.security.formloginexample.FormLoginExampleApplication')
+}
+
+// graalvmNative.toolchainDetection = false
+//
+micronaut {
+    runtime('netty')
+    testRuntime('junit5')
+    processing {
+        incremental(true)
+        annotations('io.micronaut.security.formloginexample.*')
+    }
+}
