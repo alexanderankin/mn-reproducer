@@ -1,3 +1,17 @@
+# Fix
+
+the fix is to pre-load conflicting libraries in the root project's `build.gradle` (courtesy of [vampire](https://github.com/Vampire)):
+
+```groovy
+plugins {
+    id 'io.micronaut.application'        version '3.6.6' apply false
+    id 'io.micronaut.library'            version '3.6.6' apply false
+    id 'com.github.johnrengelman.shadow' version '7.1.2' apply false
+}
+```
+
+# mn plugin issue reproducer
+
 this repo is a reproducer for these two issues:
 
     https://github.com/graalvm/native-build-tools/issues/70

@@ -1,0 +1,5 @@
+plugins {
+    id 'io.micronaut.application' version '3.6.6' apply false
+    id 'io.micronaut.library' version '3.6.6' apply false
+    id 'com.github.johnrengelman.shadow' version '7.1.2' apply false
+}
